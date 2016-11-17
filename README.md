@@ -15,7 +15,7 @@ Making WMKS.js Great Again!
 * Multi-line pastes
 * Paste history (up arrow or `Ctrl`+`r`)
 * Fullscreen and `Ctrl`+`Alt`+`Del` Links
-* Automatic new lines (NL checkbox)
+* Toggelable automatic new lines sent with paste (NL checkbox)
 * VM view is scaled to fit web view
 
 ## Extras
