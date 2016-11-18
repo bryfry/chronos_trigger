@@ -1,6 +1,15 @@
 # chronos_trigger
 
-Making WMKS.js Great Again!
+A userscript for making the vmware web view interaction interface more user friendly.
+
+## Features
+
+* Multi-line paste 
+* Paste history (up arrow or `Ctrl`+`r`)
+* VM view is scaled to fit web view
+* Fullscreen and `Ctrl`+`Alt`+`Del` Links
+* Toggelable automatic new lines sent with paste (NL checkbox)
+* Minimial theme (more screen space for the vm view)
 
 ## Install
 
@@ -8,15 +17,6 @@ Making WMKS.js Great Again!
 * Get [Tampermonkey Extension](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en)
 * Open [script](http://trustme.click/Chronos_Trigger.user.js)
 * Click Install
-
-## Results / Features
-
-* Minimial theme (more screen space for the vm view)
-* Multi-line pastes
-* Paste history (up arrow or `Ctrl`+`r`)
-* Fullscreen and `Ctrl`+`Alt`+`Del` Links
-* Toggelable automatic new lines sent with paste (NL checkbox)
-* VM view is scaled to fit web view
 
 ## Extras
 
