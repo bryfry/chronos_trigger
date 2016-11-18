@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Chronos Trigger
 // @namespace    http://tampermonkey.net/
-// @version      0.2.04
+// @version      0.2.06
 // @description  Making WMKS.js Great Again!
 // @author       @bryfry
 // @match        http://ginkgo.azuretitan.com/*vm_view*
@@ -36,7 +36,7 @@ jQuery.fn.fitToParent = function() {
 // I'm not proud of this
 window.sourceWidth=0;
 window.soruceHeight=0;
-window.termBarHeight=18;
+window.termBarHeight=24;
 
 // Over-write _sendMouseEvent to enable scaling the mouse locations
 WMKS.VNCDecoder.prototype._sendMouseEvent = function () {
@@ -94,7 +94,6 @@ function resizeView(delay){
     $("#console").css("position","relative");  // ಠ_ಠ
     $("#console").css("height","auto");  // ಠ_ಠ
     $("#mainCanvas").css("position","relative");  // ಠ_ಠ
-
 }
 
 // Do things to the page
@@ -189,10 +188,12 @@ function resizeView(delay){
     GM_addStyle('#vmTitle { text-shadow: 1px 1px 3px rgba(50, 50, 50, 1) !important; }');
     GM_addStyle('#console {  overflow: hidden; text-align: center; height: auto; !important }');
     GM_addStyle('#mainCanvas { left: 0px; right:0; margin-left:auto; margin-right: auto; !important }');
-    GM_addStyle('#termCmd {  padding-left: 5px; padding-right: 5px; padding-top: 0px; padding-bottom: 0px; width: -webkit-calc(100% - 155px); float:right; overflow: hidden; !important }');
+    GM_addStyle('#termCmd {  padding-left: 5px; padding-right: 5px; padding-top: 0px; padding-bottom: 0px; width: -webkit-calc(100% - 165px); float:right; overflow: hidden; !important }');
     GM_addStyle('a.termnavlink { padding: 0px 5px 0px 5px; !important }');
-    GM_addStyle('#termNewLine { width: 7px; height: 7px }');
-
+    GM_addStyle('#termNewLine { width: 9px; height: 9px }');
+    GM_addStyle('.terminal .cmd { height: 24px; line-height: 20px; font-size: 14px;}');
+    GM_addStyle('.terminal .cmd .prompt {line-height: 20px; font-size: 14px;}');
+    
     // This is getting silly enough I might host a css file instead of this madness
     // This is why you don't do css in js.
     var termNav = " \
@@ -200,7 +201,10 @@ function resizeView(delay){
         padding 0px 5px 0px 5px; \
         float:right; \
         text-align: left; \
-        width: 145px; \
+        width: 155px; \
+        line-height: 20px; \
+        font-size: 14px; \
+        overflow: hidden; \
         !important \
     }";
     GM_addStyle(termNav);
