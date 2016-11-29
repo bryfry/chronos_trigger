@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Chronos Trigger
 // @namespace    http://tampermonkey.net/
-// @version      0.2.06
+// @version      0.2.11
 // @description  Making WMKS.js Great Again!
 // @author       @bryfry
 // @match        http://ginkgo.azuretitan.com/*vm_view*
@@ -10,6 +10,7 @@
 // @require      https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js
 // @require      https://cdn.jsdelivr.net/mousetrap/1.6.0/mousetrap.min.js
 // @resource     jqt_css http://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/0.11.16/css/jquery.terminal.min.css
+// @resource     fa_css http://trustme.click/font-awesome.css
 // @grant        GM_addStyle
 // @grant        GM_getResourceText
 // ==/UserScript==
@@ -129,16 +130,30 @@ function resizeView(delay){
     $("#console").after("<div id='termBar'></div>");
     $("#termBar").append("<div id='termNav' class='terminal cmd'>| </div>");
     $("#termBar").append("<div id='termCmd'></div>");
-    $("#termNav").append("<input type='checkbox' id='termNewLine' checked>NL</a>");
-    $("#termNav").append("<a href='#' class='termnavlink' id='navCAD'>CAD</a>");
-    $("#termNav").append("<a href='#' class='termnavlink' id='navFull'>Full</a>");
-    $("#termNav").append("<a href='#' class='termnavlink' id='navOld'>Old</a>");
+    $("#termNav").append("<label id='ternavNLLabel'><input type='checkbox' id='termNewLine' checked />NL</label>");
+    $("#termNav").append("<a href='#' class='termnavlink' id='navCAD'><i class='fa fa-keyboard-o' aria-hidden='true' title='CAD'></i></a>");
+    $("#termNav").append("<a href='#' class='termnavlink' id='navCMD'><i class='fa fa-terminal' aria-hidden='true' title='CMD'></i></a>");
+    $("#termNav").append("<a href='#' class='termnavlink' id='navPOP'><i class='fa fa-toggle-up' aria-hidden='true' title='POP-OUT'></i></a>");
+    $("#termNav").append("<a href='#' class='termnavlink' id='navFull'><i class='fa fa-arrows-alt' aria-hidden='true' title='FULL-SCREEN'></i></a>");
+    $("#termNav").append("<a href='#' class='termnavlink' id='navOld'><i class='fa fa-window-close-o' aria-hidden='true' title='OLD'></i></a>");
 
     $("#navCAD").click(function() {
         $("#console").wmks('sendKeyCodes', [
             $.ui.keyCode.CONTROL,
             $.ui.keyCode.ALT,
             $.ui.keyCode.DELETE]);
+    });
+    
+    $("#navCMD").click(function() {
+        $("#console").wmks('sendKeyCodes', [$.ui.keyCode.WINDOWS, 82] );
+        setTimeout(function(){$("#console").wmks('sendInputString', "cmd.exe /c \"start /max cmd\"\n");},200);
+    });
+    
+    $("#navPOP").click(function() {
+        if (window.opener) {
+            window.open(window.location.href, 'CT', 'width='+window.sourceWidth+',height='+(window.sourceHeight+window.termBarHeight));
+            window.close();
+        }
     });
 
     $("#navFull").click( function() {
@@ -184,15 +199,19 @@ function resizeView(delay){
     $("#mainCanvas").css("position","relative");  // ಠ_ಠ
     var jqt_css = GM_getResourceText ("jqt_css");
     GM_addStyle (jqt_css);
+    var fa_css = GM_getResourceText ("fa_css");
+    GM_addStyle (fa_css);
     GM_addStyle('#pasteTextInput {margin: 0px; width: 500px; height: 40px !important; }');
     GM_addStyle('#vmTitle { text-shadow: 1px 1px 3px rgba(50, 50, 50, 1) !important; }');
     GM_addStyle('#console {  overflow: hidden; text-align: center; height: auto; !important }');
     GM_addStyle('#mainCanvas { left: 0px; right:0; margin-left:auto; margin-right: auto; !important }');
-    GM_addStyle('#termCmd {  padding-left: 5px; padding-right: 5px; padding-top: 0px; padding-bottom: 0px; width: -webkit-calc(100% - 165px); float:right; overflow: hidden; !important }');
-    GM_addStyle('a.termnavlink { padding: 0px 5px 0px 5px; !important }');
-    GM_addStyle('#termNewLine { width: 9px; height: 9px }');
+    GM_addStyle('#termCmd {  padding-left: 5px; padding-right: 5px; padding-top: 0px; padding-bottom: 0px; width: -webkit-calc(100% - 178px); float:right; overflow: hidden; !important }');
+    GM_addStyle('a.termnavlink { padding: 0px 5px 0px 5px; color: #dedede; !important }');
+    GM_addStyle('#termNewLine { width: 9px; height: 9px;  }');
+    GM_addStyle('#ternavNLLabel {padding-right: 10px; !important }');
     GM_addStyle('.terminal .cmd { height: 24px; line-height: 20px; font-size: 14px;}');
     GM_addStyle('.terminal .cmd .prompt {line-height: 20px; font-size: 14px;}');
+    GM_addStyle('.fa {height: 16px; width: 12px; line-height: 16px }');
     
     // This is getting silly enough I might host a css file instead of this madness
     // This is why you don't do css in js.
@@ -201,7 +220,7 @@ function resizeView(delay){
         padding 0px 5px 0px 5px; \
         float:right; \
         text-align: left; \
-        width: 155px; \
+        width: 168px; \
         line-height: 20px; \
         font-size: 14px; \
         overflow: hidden; \
