@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Chronos Trigger
 // @namespace    https://github.com/bryfry/chronos_trigger
-// @version      0.2.16
+// @version      0.2.17
 // @description  Making WMKS.js Great Again!
 // @author       @bryfry
 // @match        http://ginkgo.azuretitan.com/*vm_view*
@@ -248,13 +248,13 @@ function resizeView(delay){
     GM_addStyle('#vmTitle { text-shadow: 1px 1px 3px rgba(50, 50, 50, 1) !important; }');
     GM_addStyle('#console {  overflow: hidden; text-align: center; height: auto; !important }');
     GM_addStyle('#mainCanvas { left: 0px; right:0; margin-left:auto; margin-right: auto; !important }');
-    GM_addStyle('#termCmd {  padding-left: 5px; padding-right: 5px; padding-top: 0px; padding-bottom: 0px; width: -webkit-calc(100% - 210px); float:right; overflow: hidden; !important }');
+    GM_addStyle('#termCmd {  padding-left: 5px; padding-right: 5px; padding-top: 0px; padding-bottom: 0px; width: -webkit-calc(100% - 190px); float:right; overflow: hidden; !important }');
     GM_addStyle('a.termnavlink { padding: 0px 5px 0px 5px; color: #dedede; !important }');
     GM_addStyle('#termNewLine { width: 9px; height: 9px;  }');
-    GM_addStyle('#ternavNLLabel {padding-right: 10px; !important }');
+    GM_addStyle('#ternavNLLabel {padding-right: 7px; !important }');
     GM_addStyle('.terminal .cmd { height: 24px; line-height: 20px; font-size: 14px;}');
     GM_addStyle('.terminal .cmd .prompt {line-height: 20px; font-size: 14px;}');
-    GM_addStyle('.fa {height: 16px; width: 12px; line-height: 16px }');
+    GM_addStyle('.fa {height: 16px; width: 10px; line-height: 16px }');
     GM_addStyle('#upload {display:none; }');
     
     // This is getting silly enough I might host a css file instead of this madness
@@ -264,7 +264,6 @@ function resizeView(delay){
         padding 0px 5px 0px 5px; \
         float:right; \
         text-align: left; \
-        width: 200px; \
         line-height: 20px; \
         font-size: 14px; \
         overflow: hidden; \
@@ -273,5 +272,6 @@ function resizeView(delay){
     GM_addStyle(termNav);
 
 })();
+
 
 
