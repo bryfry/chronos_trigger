@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Chronos Trigger
 // @namespace    http://tampermonkey.net/
-// @version      0.2.11
+// @version      0.2.14
 // @description  Making WMKS.js Great Again!
 // @author       @bryfry
 // @match        http://ginkgo.azuretitan.com/*vm_view*
@@ -133,6 +133,7 @@ function resizeView(delay){
     $("#termNav").append("<label id='ternavNLLabel'><input type='checkbox' id='termNewLine' checked />NL</label>");
     $("#termNav").append("<a href='#' class='termnavlink' id='navCAD'><i class='fa fa-keyboard-o' aria-hidden='true' title='CAD'></i></a>");
     $("#termNav").append("<a href='#' class='termnavlink' id='navCMD'><i class='fa fa-terminal' aria-hidden='true' title='CMD'></i></a>");
+    $("#termNav").append("<input id='upload' type='file'/><a href='#' class='termnavlink' id='navFILE'><i class='fa fa-file-text-o' aria-hidden='true' title='PASTE-FILE'></i></a>");
     $("#termNav").append("<a href='#' class='termnavlink' id='navPOP'><i class='fa fa-toggle-up' aria-hidden='true' title='POP-OUT'></i></a>");
     $("#termNav").append("<a href='#' class='termnavlink' id='navFull'><i class='fa fa-arrows-alt' aria-hidden='true' title='FULL-SCREEN'></i></a>");
     $("#termNav").append("<a href='#' class='termnavlink' id='navOld'><i class='fa fa-window-close-o' aria-hidden='true' title='OLD'></i></a>");
@@ -143,17 +144,59 @@ function resizeView(delay){
             $.ui.keyCode.ALT,
             $.ui.keyCode.DELETE]);
     });
-    
+
     $("#navCMD").click(function() {
         $("#console").wmks('sendKeyCodes', [$.ui.keyCode.WINDOWS, 82] );
         setTimeout(function(){$("#console").wmks('sendInputString', "cmd.exe /c \"start /max cmd\"\n");},200);
     });
-    
+
+    function dec2hex (dec) {
+        return dec.toString(16);
+    }
+    function generateId (len) {
+        var arr = new Uint8Array((len || 40) / 2);
+        window.crypto.getRandomValues(arr);
+        return Array.from(arr).map(dec2hex).join('');
+    }
     $("#navPOP").click(function() {
-        if (window.opener) {
-            window.open(window.location.href, 'CT', 'width='+window.sourceWidth+',height='+(window.sourceHeight+window.termBarHeight));
+        window.open(window.location.href, document.title+generateId(5), 'width='+window.sourceWidth+',height='+(window.sourceHeight+window.termBarHeight));
+        window.resizeTo(window.sourceWidth+16,window.sourceHeight+2*window.termBarHeight+44);
+        if (window.opener){
+            window.opener.close();
+            window.close();
+        } else {
             window.close();
         }
+    });
+
+    $("#navFILE").click(function(e) {
+        e.preventDefault();
+        $("#upload:hidden").trigger('click');
+    });
+
+    $("#upload").on("change", function(e){ 
+        console.log("input file read"); 
+        var file = e.target.files[0];
+        if (!file) {
+            return;
+        }
+        console.log(file.type);
+        if (file.type === "text/plain"){
+            var reader = new FileReader();
+            reader.readAsText(file);
+            reader.onload = function(e) {
+                var contents = e.target.result;
+                var lines = contents.split('\n');
+                for(var line = 0; line < lines.length; line++){
+                    (function(lines,line){ 
+                        setTimeout(function(){ 
+                            _wmks.wmks('sendInputString', lines[line]); 
+                        }, 100*line);
+                    })(lines,line);
+                }
+            };
+        }
+        $(this).attr("value", "");
     });
 
     $("#navFull").click( function() {
@@ -205,13 +248,14 @@ function resizeView(delay){
     GM_addStyle('#vmTitle { text-shadow: 1px 1px 3px rgba(50, 50, 50, 1) !important; }');
     GM_addStyle('#console {  overflow: hidden; text-align: center; height: auto; !important }');
     GM_addStyle('#mainCanvas { left: 0px; right:0; margin-left:auto; margin-right: auto; !important }');
-    GM_addStyle('#termCmd {  padding-left: 5px; padding-right: 5px; padding-top: 0px; padding-bottom: 0px; width: -webkit-calc(100% - 178px); float:right; overflow: hidden; !important }');
+    GM_addStyle('#termCmd {  padding-left: 5px; padding-right: 5px; padding-top: 0px; padding-bottom: 0px; width: -webkit-calc(100% - 210px); float:right; overflow: hidden; !important }');
     GM_addStyle('a.termnavlink { padding: 0px 5px 0px 5px; color: #dedede; !important }');
     GM_addStyle('#termNewLine { width: 9px; height: 9px;  }');
     GM_addStyle('#ternavNLLabel {padding-right: 10px; !important }');
     GM_addStyle('.terminal .cmd { height: 24px; line-height: 20px; font-size: 14px;}');
     GM_addStyle('.terminal .cmd .prompt {line-height: 20px; font-size: 14px;}');
     GM_addStyle('.fa {height: 16px; width: 12px; line-height: 16px }');
+    GM_addStyle('#upload {display:none; }');
     
     // This is getting silly enough I might host a css file instead of this madness
     // This is why you don't do css in js.
@@ -220,7 +264,7 @@ function resizeView(delay){
         padding 0px 5px 0px 5px; \
         float:right; \
         text-align: left; \
-        width: 168px; \
+        width: 200px; \
         line-height: 20px; \
         font-size: 14px; \
         overflow: hidden; \
@@ -229,3 +273,4 @@ function resizeView(delay){
     GM_addStyle(termNav);
 
 })();
+
