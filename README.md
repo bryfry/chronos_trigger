@@ -4,12 +4,17 @@ A userscript for making the vmware web view interaction interface more user frie
 
 ## Features
 
-* Multi-line paste 
-* Paste history (up arrow or `Ctrl`+`r`)
-* VM view is scaled to fit web view
-* Fullscreen and `Ctrl`+`Alt`+`Del` Links
-* Toggelable automatic new lines sent with paste (NL checkbox)
-* Minimial theme (more screen space for the vm view)
+  * Multi-line paste 
+  * Paste history (up arrow or `Ctrl`+`r`)
+  * VM view is scaled to fit web view
+  * Helpful shortcut links:
+    * `Ctrl`+`Alt`+`Del`
+    * Fullscreen
+    * Launch windows CMD
+  * Entire text file pasting 
+  * Decrease tabs with the "Popup-into-new-window and close parent tab" button
+  * Toggelable automatic new lines sent withu paste (NL checkbox)
+  * Minimial theme (more screen space for the vm view)
 
 ## Install
 
