@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Chronos Trigger
 // @namespace    https://github.com/bryfry/chronos_trigger
-// @version      0.2.15
+// @version      0.2.16
 // @description  Making WMKS.js Great Again!
 // @author       @bryfry
 // @match        http://ginkgo.azuretitan.com/*vm_view*
@@ -134,9 +134,9 @@ function resizeView(delay){
     $("#termNav").append("<a href='#' class='termnavlink' id='navCAD'><i class='fa fa-keyboard-o' aria-hidden='true' title='CAD'></i></a>");
     $("#termNav").append("<a href='#' class='termnavlink' id='navCMD'><i class='fa fa-terminal' aria-hidden='true' title='CMD'></i></a>");
     $("#termNav").append("<input id='upload' type='file'/><a href='#' class='termnavlink' id='navFILE'><i class='fa fa-file-text-o' aria-hidden='true' title='PASTE-FILE'></i></a>");
-    $("#termNav").append("<a href='#' class='termnavlink' id='navPOP'><i class='fa fa-toggle-up' aria-hidden='true' title='POP-OUT'></i></a>");
-    $("#termNav").append("<a href='#' class='termnavlink' id='navFull'><i class='fa fa-arrows-alt' aria-hidden='true' title='FULL-SCREEN'></i></a>");
-    $("#termNav").append("<a href='#' class='termnavlink' id='navOld'><i class='fa fa-window-close-o' aria-hidden='true' title='OLD'></i></a>");
+    $("#termNav").append("<a href='#' class='termnavlink' id='navPOP'><i class='fa fa-eject' aria-hidden='true' title='POP-OUT'></i></a>");
+    $("#termNav").append("<a href='#' class='termnavlink' id='navFull'><i class='fa fa-tv' aria-hidden='true' title='FULL-SCREEN'></i></a>");
+    $("#termNav").append("<a href='#' class='termnavlink' id='navOld'><i class='fa fa-trash-o' aria-hidden='true' title='OLD'></i></a>");
 
     $("#navCAD").click(function() {
         $("#console").wmks('sendKeyCodes', [
@@ -273,4 +273,5 @@ function resizeView(delay){
     GM_addStyle(termNav);
 
 })();
+
 
