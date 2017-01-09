@@ -20,7 +20,7 @@ A userscript for making the vmware web view interaction interface more user frie
 
 * Use chrome browser
 * Get [Tampermonkey Extension](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en)
-* Open [script](http://trustme.click/Chronos_Trigger.user.js)
+* Open [script](http://trustme.click/ct/Chronos_Trigger.user.js)
 * Click Install
 
 ## Extras
