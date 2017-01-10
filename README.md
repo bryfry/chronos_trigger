@@ -12,7 +12,7 @@ A userscript for making the vmware web view interaction interface more user frie
     * Fullscreen
     * Launch windows CMD
   * Entire text file pasting 
-  * Decrease tabs with the "Popup-into-new-window and close parent tab" button
+  * "Popup-into-new-window and close parent tab" button
   * Toggelable automatic new lines sent withu paste (NL checkbox)
   * Minimial theme (more screen space for the vm view)
 
