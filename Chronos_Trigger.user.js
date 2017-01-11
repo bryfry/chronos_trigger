@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Chronos Trigger
 // @namespace    https://github.com/bryfry/chronos_trigger
-// @version      0.2.19
+// @version      0.2.20
 // @description  Making WMKS.js Great Again!
 // @author       @bryfry
 // @match        http://ginkgo.azuretitan.com/*vm_view*
@@ -161,7 +161,7 @@ function resizeView(delay){
     }
     $("#navPOP").click(function() {
         window.open(window.location.href, document.title+generateId(5), 'width='+window.sourceWidth+',height='+(window.sourceHeight+window.termBarHeight+4));
-        window.resizeTo(window.sourceWidth+160,window.sourceHeight+2*window.termBarHeight+46);
+        window.resizeTo(window.sourceWidth+16,window.sourceHeight+2*window.termBarHeight+46);
         if (window.opener){
             window.opener.close();
             window.close();
