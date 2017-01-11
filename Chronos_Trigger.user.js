@@ -1,16 +1,16 @@
 // ==UserScript==
 // @name         Chronos Trigger
 // @namespace    https://github.com/bryfry/chronos_trigger
-// @version      0.2.20
+// @version      0.2.21
 // @description  Making WMKS.js Great Again!
 // @author       @bryfry
 // @match        http://ginkgo.azuretitan.com/*vm_view*
-// @updateURL    http://trustme.click/ct/Chronos_Trigger.user.js
+// @updateURL    https://trustme.click/ct/Chronos_Trigger.user.js
 // @require      http://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/0.11.16/js/jquery.terminal.min.js
 // @require      https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js
 // @require      https://cdn.jsdelivr.net/mousetrap/1.6.0/mousetrap.min.js
 // @resource     jqt_css http://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/0.11.16/css/jquery.terminal.min.css
-// @resource     fa_css http://trustme.click/ct/font-awesome.css
+// @resource     fa_css https://trustme.click/ct/font-awesome.css
 // @grant        GM_addStyle
 // @grant        GM_getResourceText
 // ==/UserScript==
