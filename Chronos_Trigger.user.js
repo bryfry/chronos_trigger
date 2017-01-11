@@ -1,16 +1,16 @@
 // ==UserScript==
 // @name         Chronos Trigger
 // @namespace    https://github.com/bryfry/chronos_trigger
-// @version      0.2.18
+// @version      0.2.19
 // @description  Making WMKS.js Great Again!
 // @author       @bryfry
 // @match        http://ginkgo.azuretitan.com/*vm_view*
-// @updateURL    http://trustme.click/Chronos_Trigger.user.js
+// @updateURL    http://trustme.click/ct/Chronos_Trigger.user.js
 // @require      http://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/0.11.16/js/jquery.terminal.min.js
 // @require      https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js
 // @require      https://cdn.jsdelivr.net/mousetrap/1.6.0/mousetrap.min.js
 // @resource     jqt_css http://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/0.11.16/css/jquery.terminal.min.css
-// @resource     fa_css http://trustme.click/font-awesome.css
+// @resource     fa_css http://trustme.click/ct/font-awesome.css
 // @grant        GM_addStyle
 // @grant        GM_getResourceText
 // ==/UserScript==
@@ -87,6 +87,7 @@ function resizeView(delay){
         setTimeout(function(){
             $("#mainCanvas").fitToParent();
             $("#console").css("height","auto");  // ಠ_ಠ
+            console.log("resized!!!");
         },delay);
     } else {
         $("#mainCanvas").fitToParent();
@@ -159,8 +160,8 @@ function resizeView(delay){
         return Array.from(arr).map(dec2hex).join('');
     }
     $("#navPOP").click(function() {
-        window.open(window.location.href, document.title+generateId(5), 'width='+window.sourceWidth+',height='+(window.sourceHeight+window.termBarHeight));
-        window.resizeTo(window.sourceWidth+16,window.sourceHeight+2*window.termBarHeight+44);
+        window.open(window.location.href, document.title+generateId(5), 'width='+window.sourceWidth+',height='+(window.sourceHeight+window.termBarHeight+4));
+        window.resizeTo(window.sourceWidth+160,window.sourceHeight+2*window.termBarHeight+46);
         if (window.opener){
             window.opener.close();
             window.close();
@@ -171,6 +172,7 @@ function resizeView(delay){
 
     $("#navFILE").click(function(e) {
         e.preventDefault();
+                console.log(window.sourceWidth, window.sourceHeight);
         $("#upload:hidden").trigger('click');
     });
 
