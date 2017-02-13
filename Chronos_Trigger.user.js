@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Chronos Trigger
 // @namespace    https://github.com/bryfry/chronos_trigger
-// @version      0.2.21
+// @version      0.2.22
 // @description  Making WMKS.js Great Again!
 // @author       @bryfry
 // @match        http://ginkgo.azuretitan.com/*vm_view*
@@ -134,6 +134,7 @@ function resizeView(delay){
     $("#termNav").append("<label id='ternavNLLabel'><input type='checkbox' id='termNewLine' checked />NL</label>");
     $("#termNav").append("<a href='#' class='termnavlink' id='navCAD'><i class='fa fa-keyboard-o' aria-hidden='true' title='CAD'></i></a>");
     $("#termNav").append("<a href='#' class='termnavlink' id='navCMD'><i class='fa fa-terminal' aria-hidden='true' title='CMD'></i></a>");
+    $("#termNav").append("<a href='#' class='termnavlink' id='navTERM'><i class='fa fa-terminal' aria-hidden='true' title='Kali Term'></i></a>");
     $("#termNav").append("<input id='upload' type='file'/><a href='#' class='termnavlink' id='navFILE'><i class='fa fa-file-text-o' aria-hidden='true' title='PASTE-FILE'></i></a>");
     $("#termNav").append("<a href='#' class='termnavlink' id='navPOP'><i class='fa fa-eject' aria-hidden='true' title='POP-OUT'></i></a>");
     $("#termNav").append("<a href='#' class='termnavlink' id='navFull'><i class='fa fa-tv' aria-hidden='true' title='FULL-SCREEN'></i></a>");
@@ -150,6 +151,33 @@ function resizeView(delay){
         $("#console").wmks('sendKeyCodes', [$.ui.keyCode.WINDOWS, 82] );
         setTimeout(function(){$("#console").wmks('sendInputString', "cmd.exe /c \"start /max cmd\"\n");},200);
     });
+    
+    $('#navCMD i').hover(
+       function(){
+           $(this).addClass('fa-windows');
+           $(this).removeClass('fa-terminal');
+       },
+       function(){
+           $(this).removeClass('fa-windows'); 
+           $(this).addClass('fa-terminal');
+       }
+    );
+    
+    $("#navTERM").click(function() {
+        $("#console").wmks('sendKeyCodes', [$.ui.keyCode.ALT, 113] );
+        setTimeout(function(){$("#console").wmks('sendInputString', "gnome-terminal --hide-menubar --window --maximize \n");},200);
+    });
+
+    $('#navTERM i').hover(
+       function(){
+           $(this).addClass('fa-linux');
+           $(this).removeClass('fa-terminal');
+       },
+       function(){
+           $(this).removeClass('fa-linux'); 
+           $(this).addClass('fa-terminal');
+       }
+    );
 
     function dec2hex (dec) {
         return dec.toString(16);
