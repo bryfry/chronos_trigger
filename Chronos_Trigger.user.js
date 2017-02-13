@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Chronos Trigger
 // @namespace    https://github.com/bryfry/chronos_trigger
-// @version      0.2.22
+// @version      0.2.23
 // @description  Making WMKS.js Great Again!
 // @author       @bryfry
 // @match        http://ginkgo.azuretitan.com/*vm_view*
