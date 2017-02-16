@@ -149,7 +149,7 @@ function resizeView(delay){
 
     $("#navCMD").click(function() {
         $("#console").wmks('sendKeyCodes', [$.ui.keyCode.WINDOWS, 82] );
-        setTimeout(function(){$("#console").wmks('sendInputString', "cmd.exe /c \"start /max cmd\"\n");},200);
+        setTimeout(function(){$("#console").wmks('sendInputString', "cmd.exe /c \"start /max cmd /k mode con:cols=120 lines=2500\"\n");},200);
     });
     
     $('#navCMD i').hover(
